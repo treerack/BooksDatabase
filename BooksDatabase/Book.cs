@@ -15,5 +15,6 @@ namespace BooksDatabase
         public string Edition { get; set; }
         public string Genre { get; set; }
         public int Price { get; set; }
+        public string Introduction { get; set; }
     }
 }

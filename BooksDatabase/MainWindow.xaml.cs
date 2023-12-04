@@ -38,13 +38,13 @@ namespace BooksDatabase
             // Removing useless part of the text
             string searchTxt = searchTextBox.Text.Trim();
 
-            if(string.IsNullOrEmpty(searchTxt) )
+            // Searching by name and getting info from the DB
+            if (string.IsNullOrEmpty(searchTxt) )
             {
                 MessageBox.Show("Please enter a book name to search...");
                 return;
             }
 
-            // Searching by name and getting info from the DB
             string query = "SELECT * FROM departmentTBl WHERE Name LIKE @Name";
             SQLiteCommand command = new SQLiteCommand(query, connection);
             command.Parameters.AddWithValue("@Name", "%" + searchTxt + "%");
@@ -70,10 +70,30 @@ namespace BooksDatabase
             resultListView.ItemsSource = bookList;
         }
 
-        private void goToCart(object sender, RoutedEventArgs e)
+        private void addToCart_Click(object sender, RoutedEventArgs e)
         {
-            shoppingCart shoppingCartWindow = new shoppingCart();
-            shoppingCartWindow.Show();
+            if (resultListView.Items.Count == 0)
+            {
+                MessageBox.Show("Please select books to add to the cart.");
+                return;
+            }
+            foreach (var item in resultListView.SelectedItems)
+            {
+                Book selectedBook = (Book)item;
+                ShoppingCartService.ShoppingCart1.Add(selectedBook);
+            }
+        }
+
+        private void goToCart_Click(object sender, RoutedEventArgs e)
+        {
+            List<Book> selectedBooks = new List<Book>();
+            foreach (var item in resultListView.SelectedItems)
+            {
+                selectedBooks.Add((Book)item);
+            }
+
+            ShoppingCart shoppingCart = new ShoppingCart();
+            shoppingCart.Show();
             this.Close();
         }
     }

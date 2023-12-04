@@ -7,12 +7,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BooksDatabase"
         mc:Ignorable="d"
-        Title="Book Search Engine V1.0">
-    <Grid Margin="0,0,0,-6">
-        <StackPanel Margin="10,10,10,36">
+        Title="Book Search Engine V3.0">
+    <Grid Margin="0,0,10,60">
+        <StackPanel Margin="10,10,86,36">
             <TextBox x:Name="searchTextBox" Width="200" Margin="20, 20, 20, 10" Height="40"/>
             <Button Content="Search" Width="100" Click="SearchButton_Click" Margin="10, 0, 20, 20"/>
-            <Button Content="Go to Cart" Click="goToCart" Width="70" Height="40" HorizontalAlignment="Right" Margin="40, 0, 10, 10"/>
             <ListView x:Name="resultListView">
                 <ListView.View>
                     <GridView>
@@ -23,11 +22,11 @@
                         <GridViewColumn Header="Edition" DisplayMemberBinding="{Binding Edition}" Width="100"/>
                         <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="100"/>
                         <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="100"/>
-                        <GridViewColumn Header="Add" DisplayMemberBinding="{Binding Price}" Width="80"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </StackPanel>
-        
+        <Button Content="Add to Cart" Click="addToCart_Click" Margin="705,145,-6,166"/>
+        <Button Content="Go to Cart" Click="goToCart_Click" Margin="705,375,-6,-53"/>
     </Grid>
 </Window>
